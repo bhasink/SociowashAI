@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Bars } from 'react-loader-spinner'
+import ReactHtmlParser from 'react-html-parser';
 
 const Chat = () => {
   const [newQuestion, setNewQuestion] = useState("");
@@ -11,14 +12,18 @@ const Chat = () => {
     baseURL: "https://api.openai.com/v1",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer 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`,
+      Authorization: `Bearer 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`,
     },
   });
+
+
+  
 
   const askGPT = async (prompt) => {
     const response = await instance.post("/chat/completions", {
       model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: prompt }],
+      messages: [{ role: "user", content: prompt },
+      { role: "user", content: "You are an digital marketing bot for agency Sociowash. Please don't answer queries outside marketing" }],
     });
     console.log("response.data.choices[0].message.content;", response.data.choices[0].message.content)
     
@@ -29,11 +34,11 @@ const Chat = () => {
     setLoader(true)
     const response = await askGPT(newQuestion);
     setStoredValues([
-      {
+      
+      ...storedValues, {
         question: newQuestion,
         answer: response,
-      }, 
-      ...storedValues
+      }
     ]);
     setLoader(false)
     setNewQuestion("");
@@ -46,17 +51,17 @@ const Chat = () => {
   };
   return (
     <>
+
       <div
         className="page-content page-container bg-color-lite "
         id="page-content"
       >
         <div className="padding polaroid">
-          <div className="row container d-flex justify-content-center">
-            <div className="offset-md-3 col-md-6">
+          <div className="" style={{margin: '2em'}} >
+            <div className="">
               <div className="card card-bordered">
                 <div className="card-header">
                   <h2 className="card-title">
-                    <strong>Chat using ChatGPT API</strong>
                   </h2>
                 </div>
 
@@ -165,11 +170,12 @@ const QuesAnswer = ({ ques, answer }) => {
       setTimeout(() => {
         setText(text + answer[index]);
         setIndex(index + 1);
-      }, 20);
+      }, 2);
     }
   }, [index]);
   return (
     <>
+
       <div className="media media-chat media-chat-reverse">
         <div className="media-body">
           <p>{ques}</p>
@@ -183,7 +189,7 @@ const QuesAnswer = ({ ques, answer }) => {
           alt="..."
         />
         <div className="media-body">
-          <p>{text}</p>
+          <p  style={{whiteSpace: 'pre-line'}} >{ReactHtmlParser(answer)}</p>
         </div>
       </div>
     </>
