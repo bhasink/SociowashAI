@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Bars } from 'react-loader-spinner'
-import ReactHtmlParser from 'react-html-parser';
 
 const Chat = () => {
   const [newQuestion, setNewQuestion] = useState("");
@@ -190,7 +189,7 @@ const QuesAnswer = ({ ques, answer }) => {
           alt="..."
         />
         <div className="media-body">
-          <p  style={{whiteSpace: 'pre-line'}} >{ReactHtmlParser(answer)}</p>
+          <p  style={{whiteSpace: 'pre-line'}} >{answer}</p>
         </div>
       </div>
     </>
