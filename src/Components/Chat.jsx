@@ -62,6 +62,7 @@ const Chat = () => {
               <div className="card card-bordered">
                 <div className="card-header">
                   <h2 className="card-title">
+                    SociowashGPT
                   </h2>
                 </div>
 

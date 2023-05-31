@@ -1,5 +1,5 @@
 {
-  "name": "udemy-chat",
+  "name": "gpt-chat",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
