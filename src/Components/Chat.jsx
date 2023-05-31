@@ -11,7 +11,7 @@ const Chat = () => {
     baseURL: "https://api.openai.com/v1",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer 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`,
+      Authorization: `Bearer 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`,
     },
   });
 
